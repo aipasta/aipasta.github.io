@@ -60,7 +60,7 @@ theme_settings:
 
   # Scripts / Features 
   google_analytics: UA-146058657-1  # Tracking ID, e.g. "UA-000000-01"
-  disqus_shortname: rhoowd-note
+  disqus_shortname: ai-pasta
   katex: true # Enable if using math markup
   
   special_page:
