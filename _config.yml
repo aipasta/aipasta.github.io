@@ -1,7 +1,7 @@
 # SITE CONFIGURATION
 baseurl: ""
-# url: "https://aipasta.github.io"
-url: "http://127.0.0.1:4000"
+url: "https://aipasta.github.io"
+# url: "http://127.0.0.1:4000"
 title: AI pasta # site's title
 description: # "A website with blog posts and pages" # used by search engines
 
@@ -9,7 +9,7 @@ description: # "A website with blog posts and pages" # used by search engines
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Learn Everything # blog's title
+  title: AI PASTA # blog's title
   avatar: assets/img/triangle.svg
   favicon: assets/favicon.ico
   gravatar: # Email MD5 hash

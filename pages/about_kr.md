@@ -5,12 +5,6 @@ permalink: /about_kr/
 feature-img: "assets/img/pexels/circuit.jpeg"
 ref: about
 lang: kr
-tags: [About, Test]
 ---
 
-안녕 Type on Strap is based on Type Theme, a free and open-source theme for [Jekyll](http://jekyllrb.com/), licensed under the MIT License.
-
-Head over to the [theme's documentation](https://github.io/sylhare/Type-on-Strap) for much more information about Type on Strap or to install this theme on your own Jekyll site.
-
-This file is an example of a page in Jekyll, that automatically shows up in the header navigation, you can delete or modify this file freely.
- 
+AI PASTA 는 AI 관련 연구 진행 및 최신 연구 스터디를 위한 그룹입니다.
