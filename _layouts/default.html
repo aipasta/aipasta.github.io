@@ -3,6 +3,67 @@
   {% include head.html %}
   <body>
     {% include navbar.html %}
+    <div class="wrapper" style="text-align: right; line-height: 1em; padding-right: 1em">
+      {% if page.ref == 'index'%}
+        {% if page.lang == 'en' %}
+        <a href="{{ site.url }}/" class="{{ 'en' }}" style=" font-weight: bold ;">{{ 'en' }}</a>
+        <font size="3em">/</font>
+        <a href="{{ site.url }}/{{'index_kr.html'}}/" class="{{ 'kr' }}">{{ 'kr' }}</a> 
+        {% else %}
+          <a href="{{ site.url }}/" class="{{ 'en' }}">{{ 'en' }}</a>
+          <font size="3em">/</font>
+          <a href="{{ site.url }}/{{'index_kr.html'}}/" class="{{ 'kr' }}" style=" font-weight: bold ;">{{ 'kr' }}</a> 
+        {% endif %}
+
+      {% else %}
+        {% if page.lang == 'en' %}
+          {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}      
+          {% for post in posts %} 
+            {% if post.lang == 'kr' %}          
+            <a href="{{ page.url | prepend: site.baseurl }}" style=" font-weight: bold ;" class="{{ page.lang }}">{{ 'en' }}</a> 
+            <font size="3em">/</font>
+            <a href="{{ post.url | prepend: site.baseurl }}" class="{{ post.lang }}">{{ post.lang }}</a> 
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if page.lang == 'kr' %}
+          {% assign posts=site.posts | where:"ref", page.ref | sort: 'lang' %}      
+          {% for post in posts %} 
+            {% if post.lang == 'en' %}          
+            <a href="{{ post.url | prepend: site.baseurl }}"  class="{{ post.lang }}">{{ post.lang }}</a> 
+            <font size="3em">/</font>
+            <a href="{{ page.url | prepend: site.baseurl }}" style=" font-weight: bold ;" class="{{ page.lang }}">{{ 'kr' }}</a> 
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+
+
+        {% if page.lang == 'en' %}
+        {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+        {% for pg in pages %} 
+          {% if pg.lang == 'kr' %}
+          <a href="{{ page.url | prepend: site.baseurl }}" style=" font-weight: bold ;" class="{{ page.lang }}">{{ page.lang }}</a>   
+          <font size="3em">/</font>
+          <a href="{{ pg.url | prepend: site.baseurl }}" class="{{ pg.lang }}">{{ pg.lang }}</a> 
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if page.lang == 'kr' %}
+        {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+        {% for pg in pages %} 
+          {% if pg.lang == 'en' %}
+          <a href="{{ pg.url | prepend: site.baseurl }}" class="{{ pg.lang }}">{{ pg.lang }}</a> 
+          <font size="3em">/</font>
+          <a href="{{ page.url | prepend: site.baseurl }}" style=" font-weight: bold ;" class="{{ page.lang }}">{{ page.lang }}</a>   
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+
+      {% endif %}
+    </div>
+    
     <div class="content">
       {{ content }}
     </div>

@@ -1,16 +1,27 @@
 <header class="site-header">
     
     <!-- Logo and title -->
+    {% if page.lang == 'en' %}
 	<div class="branding">
-		<a href="{{ site.baseurl }}/">
+		<a href="{{ site.url }}/">
 			<img class="avatar" src="{{ site.baseurl }}/{{ site.theme_settings.avatar }}" alt=""/>
 		</a>
 
 		<h1 class="site-title">
-			<a href="{{ site.baseurl }}/">{{ site.theme_settings.title }}</a>
+			<a href="{{ site.url }}/">{{ site.theme_settings.title }}</a>
 		</h1>
 	</div>
+    {% else %}
+    <div class="branding">
+        <a href="{{ site.url }}/{{'index_kr.html'}}/">
+            <img class="avatar" src="{{ site.baseurl }}/{{ site.theme_settings.avatar }}" alt=""/>
+        </a>
     
+        <h1 class="site-title">
+            <a href="{{ site.url }}/{{'index_kr.html'}}/">{{ site.theme_settings.title }}</a>
+        </h1>
+    </div>
+    {% endif %}
     <!-- Toggle menu -->
     <nav class="clear">
     <a id="pull" class="toggle" href="#">

@@ -11,7 +11,8 @@ layout: default
   {% endif %}
 
   <div class="posts">
-    {% for post in paginator.posts %}
+    {% assign posts=site.posts | where:"lang", page.lang %}
+    {% for post in posts %}
     <div class="post-teaser">
       {% if post.thumbnail %} 
       <div class="post-img">
