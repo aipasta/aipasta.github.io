@@ -11,7 +11,9 @@ excerpt_separator: <!--more-->
 
 <!--more-->
 
-![Image of a glass on a book]({{ site.baseurl }}/assets/img/review/on_policy_rl/title.png)
+{% include aligner.html images="review/on_policy_rl/title.png" column=1 %}
+
+
 
 Google Brain 팀에서 ["What Matters In On-Policy Reinforcement Learning? A Large-Scale Empirical Study."](https://arxiv.org/pdf/2006.05990.pdf) 이라는 논문을 썼는데요, 강화학습, 특히 여기서는 on-policy 방식의 학습을 진행할 때, 성능에 영향을 미치는 요소들에 대해서 정리해주는 재미있는 논문입니다. 강화학습을 할 때 꼭 확인해야할 체크리스트를 제공해주는 느낌도 있어서 여기서 이야기 하고 있는 것들을 한번 정리해보려고 합니다.
 
@@ -41,8 +43,7 @@ Google Brain 팀에서 ["What Matters In On-Policy Reinforcement Learning? A Lar
 **Tested environment.** 이 논문에서는 OpenAI Gym에서 제공하는 대표적인 continuous control 작업인 다음의 5개의 환경에서 테스트를 진행했습니다. 
 Hopper-v1, Walker2d-v1, HalfCheetah-v1, Ant-v1, Humanoid-v1
  
-![Ant]({{ site.baseurl }}/assets/img/review/on_policy_rl/ant.gif){: width="50%" height="50%"}![Humanoid]({{ site.baseurl }}/assets/img/review/on_policy_rl/humanoid.gif){: width="50%" height="50%"}
-
+![Ant](https://github.com/aipasta/aipasta.github.io/blob/master/assets/img/review/on_policy_rl/ant.gif?raw=true){: width="50%" height="50%"}![Humanoid](https://github.com/aipasta/aipasta.github.io/blob/master/assets/img/review/on_policy_rl/humanoid.gif?raw=true){: width="50%" height="50%"}
 
 **Unified on-policy learing algorithm.** 다양한 알고리즘들을 공정하게 비교하기 위해서는 동일한 환경에서 학습되고 그 결과를 비교할 수 있어야 한다. 이를 위해서 저자들은 configuration 설정에 따라 다양한 방식으로 동작할 수 있는 통합된 학습 알고리즘을 먼저 구현했습니다. PPO 논문에 나온 실험결과와의 비교를 통해 이 알고리즘이 잘 동작하는지 검증한 뒤 실험을 진행하였습니다. 이렇게 통합된 알고리즘을 구현하면서 생겼던 디자인 결정들을 모두 테스트 해야할 parameter로 정의해서 50개가 넘는 요소들을 정의하고 이들에 대한 모든 실험을 진행하였다고 하네요.
 
@@ -56,7 +57,9 @@ Hopper-v1, Walker2d-v1, HalfCheetah-v1, Ant-v1, Humanoid-v1
 **Design Decisions.**
 우선 첫번째로 어떤 loss로 모델을 학습할지 입니다. 모델을 학습할 때 어떤 loss function을 이용하여 학습할 것인지는 논문들이 제안하는 알고리즘들의 핵심 아이디어라고 할 수 있는데, 여기서는 크게 6개의 연구에서 제안했던 loss를 비교하고 있습니다. (Vanilla policy gradient, V-trace, PPO, AWR, V-MPO, RPA.)
 
-![Image of a glass on a book]({{ site.baseurl }}/assets/img/review/on_policy_rl/r1.png)
+<!--![Image of a glass on a book]({{ site.baseurl }}/assets/img/review/on_policy_rl/r1.png)-->
+
+{% include aligner.html images="review/on_policy_rl/r1.png" column=1 %}
 
 **Interpretation & Recommendation.** 위의 그림에서 볼 수 있듯이 PPO가 모든경우에 잘 동작하고 있다는 것을 확인할 수 있습니다.
 
@@ -125,7 +128,9 @@ On-policy 환경에서는, GAE 가 좋은 성능을 내고 $\lambda=0.9$ 값을 
 - Number of passes over the data: 한번 수집한 데이터를 몇번 반복하여 학습에 사용할 것인지 결정해야 합니다.
 - Mini batch size: batch로 묶어서 보통 연산을 하는데, 이때 적절한 사이즈는 어떻게 되는지. 
 
-![Analysis of choice num_envs]({{ site.baseurl }}/assets/img/review/on_policy_rl/num_env.png)
+<!--![Analysis of choice num_envs]({{ site.baseurl }}/assets/img/review/on_policy_rl/num_env.png)-->
+
+{% include aligner.html images="review/on_policy_rl/num_env.png" column=1 %}
 
 **Interpretation & Recommendation.** 먼저 가장 흥미로운 결과부터 이야기를 해보면 number of parallel environments에 대한 것입니다. 위의 그래프가 이 결과를 보여주고 있는데, 환경의 개수가 너무 커지면 오히려 성능이 저하되는 경우가 있는 것을 볼 수 있습니다. 또한 number of iteration 결과도 비슷한 양상을 보여주는데, 어느정도(1024~2048 iteration)까지는 성능이 좋아지지만 이것보다 커지면 오히려 나빠지는 것을 확인했습니다.
 
