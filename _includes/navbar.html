@@ -32,17 +32,28 @@
     <ul class="hide">
         <!-- Auto Generation of NORMAL pages in the navbar -->
         {% assign name_page = "" %}
-        
+
+        {% assign page_lang = page.lang %}
+
         {% for page in site.pages %}
         {% if page.title and page.hide != true %}
         {% if name_page contains page.title %}
         {% else %}
-        <li class="separator"> | </li>
-        <li>
-            <a class="clear" href="{{ page.url | relative_url }}">
-                {{ page.title }}
-            </a>
-        </li>
+            {% if page_lang == 'en' %}
+                <li class="separator"> | </li>
+                <li>
+                    <a class="clear" href="{{ page.url | relative_url }}">
+                        {{ page.title }}
+                    </a>
+                </li>
+            {% else %}
+                <li class="separator"> | </li>
+                <li>
+                    <a class="clear" href="{{ site.url }}{{ site.baseurl }}/{{ page.title }}_kr">
+                        {{ page.title }}
+                    </a>
+                </li>
+            {% endif %}
         {% endif %}
         {% assign name_page = page.title | append: name_page %}
         {% endif %}
@@ -51,12 +62,21 @@
         <!-- Auto Generation of SPECIAL pages in the navbar -->
         {% for item in site.theme_settings.special_page %}
           {% if item[1].enabled %}
-            <li class="separator"> | </li>
-            <li>
-                <a class="clear" href="{{ site.url }}{{ site.baseurl }}/{{ item[1].icon }}">
-                    <i class="fa fa-{{ item[1].icon }}" aria-hidden="true"></i>
-                </a>
-            </li>
+            {% if page.lang == 'en' %}
+                <li class="separator"> | </li>
+                <li>
+                    <a class="clear" href="{{ site.url }}{{ site.baseurl }}/{{ item[1].icon }}">
+                        <i class="fa fa-{{ item[1].icon }}" aria-hidden="true"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="separator"> | </li>
+                <li>
+                    <a class="clear" href="{{ site.url }}{{ site.baseurl }}/{{ item[1].icon }}_kr">
+                        <i class="fa fa-{{ item[1].icon }}" aria-hidden="true"></i>
+                    </a>
+                </li>  
+            {% endif %}
           {% endif %}
         {% endfor %}
     </ul>
